@@ -1,4 +1,4 @@
-#Week 3
+# Week 3
 
 ## Detection Algorithms
 
@@ -25,7 +25,8 @@
 	*	b<sub>x</sub> and b<sub>y</sub> are defined relative to the cell corner (top-left)
 	*	b<sub>h</sub> and b<sub>w</sub> are defined as fractions of cell dimensions
 *	**Evaluation of detected bounding box:** Metric of Intersection over Union (IoU) is used
->	IoU = Intersection of prediction and groundtruth / Union of prediction and groundtruth
+>	IoU = (Intersection of prediction and groundtruth) / (Union of prediction and groundtruth)
+>
 >	IoU >= 0.5 is considered a good detection
 *	**Non-maximal suppresion:** Used to avoid cluttered multiple bounding boxes for the same object
 	*	Discard all BB with low p<sub>c</sub>
