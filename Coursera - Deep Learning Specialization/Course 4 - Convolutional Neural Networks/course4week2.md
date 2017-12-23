@@ -1,8 +1,8 @@
-#Week 2
+# Week 2
 
-##Case Studies
+## Case Studies
 
-###[LeNet-5](http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf)
+### [LeNet-5](http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf)
 Standard traits
 
 *	Height and width decreases with depth
@@ -52,7 +52,7 @@ Unique traits
 *	Introduces **inception module**
 	*	Tries to do away with filter size as a hyperparameter by incorporating 1x1, 3x3, 5x5 filters and max pooling (in 'same' mode) at same depth
 	*	**Bottleneck** layer (e.g. 1x1 before 5x5) to reduce computations
-*	**Side branches: ** Hidden layers also enforced to learn different representations for each output class. This method seems to have a regularizing effect
+*	**Side branches:** Hidden layers also enforced to learn different representations for each output class. This method seems to have a regularizing effect
 
 ## Practical Advice
 1.	Transfer Learning
