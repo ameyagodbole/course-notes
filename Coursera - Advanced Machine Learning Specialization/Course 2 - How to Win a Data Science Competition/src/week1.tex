@@ -1,0 +1,351 @@
+\documentclass[a4paper]{article}
+
+\usepackage{fullpage} % Package to use full page
+\usepackage{parskip} % Package to tweak paragraph skipping
+\usepackage{tikz} % Package for drawing
+\usepackage{amsmath}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cyan,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\title{Week 1: Recap\vspace{-2ex}}
+\author{Ameya Godbole}
+\date{\vspace{-5ex}}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+A thanks to:
+\begin{enumerate}
+\item the course instructors: Dmitry Ulyanov, Alexander Guschin, Mikhail Trofimov, Dmitry Altukhov and Marios Michailidis
+\item National Research University Higher School of Economics
+\item Coursera
+\end{enumerate}
+
+The broad goal of the course is to get the necessary knowledge and expertise to succesfully participate in data science competitions.
+
+%\begin{figure}[!htbp]
+%\begin{center}
+%\begin{tikzpicture}
+%\draw[domain=-2:2, color=blue] plot (\x, {1 - (\x)^2}) node[above = .5cm, right, color=blue] {$f(x)=1-x^2$};
+%\draw[domain=-2:2, color=red] plot(\x,-1 * \x + 1.25) node[above = .5cm, right, color=red] {Tangent at $x=.5$};
+%\draw [thick, ->] (-3,0) -- (3,0) node [above] {$x$};
+%\draw [thick, ->] (0,-3) -- (0,3) node [right] {$y$};
+%\node at (.5,.75) {\textbullet};
+%\end{tikzpicture}
+%\end{center}
+%\caption{The plot of $f(x)=1-x^2$ with a tangent at $x=.5$.}\label{exampleplot}
+%\end{figure}
+
+%\begin{figure}[!htbp]
+%\begin{center}
+%\includegraphics[width=8cm]{sage1.png}
+%\end{center}
+%\caption{The derivative of $f(x)=1-x^2$ at $x=.5$ converging to -1 as $h\to0$.}
+%\end{figure}
+
+%\begin{equation}
+%f'(a) = \lim_{h\to0}\frac{f(a+h)-f(a)}{h}
+%\end{equation}
+
+%\begin{align}
+%y=&ax+b&&\text{(definition of a straight line)}\nonumber\\
+%  &f'(a)x+b&&\text{(definition of the derivative)}\nonumber\\
+%  &f'(a)x+f(a)-f'(a)a&&\text{(we know that the line intersects $f$ at $(a,f(a))$}\nonumber
+%\end{align}
+
+%\begin{verbatim}
+%def illustrate(f, a):
+%    """
+%    Function to take a function and illustrate the limiting definition of a derivative at a given point.
+%    """
+%    lst = []
+%    for h in srange(.01, 3, .01):
+%    	lst.append([h,(f(a+h)-f(a))/h])
+%    return list_plot(lst, axes_labels=['$x$','$\\frac{f(%.02f+h)-f(%.02f)}{h}$' % (a,a)])
+%\end{verbatim}
+
+\section{Competition Mechanics}
+
+\begin{enumerate}
+\item \textbf{Data:} Consists of provided data and (optionally) data from external sources
+\item \textbf{Model:} Anything that produces answers from data. Must be the \textbf{best possible predictor} and \textbf{reproducible}
+\item \textbf{Submission:} The prediction (optionally code)
+\item \textbf{Evaluation:} Computed score using prediction and correct answer
+\item \textbf{Leaderboard:} Relative position among participants
+\end{enumerate}
+
+During the competition, score is evaluated only on a \textit{'public'} subset of the test data. Final standings are evaluated on the remaining \textit{'private'} test set.
+
+\section{Recap of basic ML algorithms}
+
+\subsection{Model Families}
+\begin{enumerate}
+\item Linear
+	\begin{itemize}
+	\item E.g. logistic regression, SVM	
+	\item Good for sparse high dimensional data
+	\end{itemize}
+\item Tree-based
+	\begin{itemize}
+	\item E.g. decision tree, \href{https://www.datasciencecentral.com/profiles/blogs/random-forests-explained-intuitively}{random forest}, GBDT (gradient boosted decision trees)
+	\item Complicated models use decision tree as building block
+	\item Decision tree uses divide-and-conquer approach to recursively split the space. Data is split in boxes having samples of same type
+	\end{itemize}
+\item kNN-based
+	\begin{itemize}
+	\item Intuition: Closer objects are likely to have the same label
+	\item Heavily relies on measure of point closeness	
+	\end{itemize}
+\item Neural networks
+\end{enumerate}
+
+\subsection{No free lunch theorem}
+"There is no method which outperforms all others for all tasks"
+
+or
+
+"For every method, we can construct a task for which this particular method will not be the best"
+
+The reason is that every method relies on some assumptions about data or task. If the assumptions fail, the method will perform poorly.
+
+\subsection{Suggested reading}
+\begin{itemize}
+\item Overview of methods\footnotemark
+\begin{enumerate}
+\item \href{http://scikit-learn.org/stable/}{Scikit-Learn (or sklearn) library}
+\item \href{http://scikit-learn.org/stable/modules/neighbors.html}{Overview of k-NN (sklearn's documentation)}
+\item \href{http://scikit-learn.org/stable/modules/linear_model.html}{Overview of Linear Models (sklearn's documentation)}
+\item \href{http://scikit-learn.org/stable/modules/tree.html}{Overview of Decision Trees (sklearn's documentation)}
+\item \href{http://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science.html}{Overview of algorithms and parameters in H2O documentation}
+\end{enumerate}
+\item Additional Tools\footnotemark[\value{footnote}]
+\begin{enumerate}
+\item \href{https://github.com/JohnLangford/vowpal_wabbit}{Vowpal Wabbit repository}
+\item \href{https://github.com/dmlc/xgboost}{XGBoost repository}
+\item \href{https://github.com/Microsoft/LightGBM}{LightGBM repository}
+\item Frameworks for Neural Nets: Keras,PyTorch,TensorFlow,MXNet, Lasagne
+\item \href{http://scikit-learn.org/stable/auto_examples/classification/plot_classifier_comparison.html}{Example from sklearn with different decision surfaces}
+\item \href{https://github.com/geffy/tffm}{Arbitrary order factorization machines}
+\end{enumerate}
+\end{itemize}
+
+\footnotetext{List obtained from course page}
+
+\section{Software/Hardware requirements}
+StandCloud Computing:
+\begin{itemize}
+\item \href{https://aws.amazon.com/}{AWS}, \href{https://cloud.google.com/}{Google Cloud}, \href{https://azure.microsoft.com/}{Microsoft Azure}
+\end{itemize}
+AWS spot option:
+\begin{itemize}
+\item \href{http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html}{Overview of Spot mechanism}
+\item \href{http://www.datasciencebowl.com/aws_guide/}{Spot Setup Guide}
+\end{itemize}
+Stack and packages:
+\begin{itemize}
+\item \href{https://www.scipy.org/}{Basic SciPy stack (ipython, numpy, pandas, matplotlib)}
+\item \href{http://jupyter.org/}{Jupyter Notebook}
+\item \href{https://github.com/danielfrg/tsne}{Stand-alone python tSNE package}
+\item Libraries to work with sparse CTR-like data: \href{http://www.libfm.org/}{LibFM}, \href{https://www.csie.ntu.edu.tw/~cjlin/libffm/}{LibFFM}
+\item Another tree-based method: RGF (\href{https://github.com/baidu/fast_rgf}{implemetation}, \href{https://arxiv.org/pdf/1109.0887.pdf}{paper})
+\item Python distribution with all-included packages: \href{https://www.continuum.io/what-is-anaconda}{Anaconda}
+\item \href{https://tomaugspurger.github.io/}{Blog "datas-frame" (contains posts about effective Pandas usage)}
+\end{itemize}
+
+\section{Feature preprocessing and generation}
+Choice of preprocessing and generation pipeline depends on:
+
+\textbf{Feature types:} Different types require diff preprocssing techniques and the feature generation method also vary accordingly with type.
+
+\textbf{Model:} \textit{No free luch theorem} can be extended to understand that features generated may benefit one model but be useless for another.
+
+Oftentimes it is beneficial to train model on concatenated dataframe generated by different preprocessings or to mix models trained on differently preprocessed data.
+
+Feature generation can involve:
+\begin{enumerate}
+\item use of prior knowledge and logic
+\item digging into data; creating and checking hypotheses
+\end{enumerate}
+
+\subsection{Numeric Features}
+\textbf{Scale:}
+\begin{itemize}
+\item Scale of features does not impact tree-based models but has a large impact on non tree-based models. In the extremes, the model may ignore/give undue importance to a feature only due to its scale. E.g.
+	\begin{itemize}
+	\item for kNN, a feaure showing very small scale(range) will be ignored while features with large scale will be given importance
+	\item scale of features affects regularization and stability of gradient descent in neural networks 
+	\end{itemize}
+\item Preprocessing tools:
+	\begin{enumerate}
+	\item To [0,1] (sklearn.preprocessing.MinMaxScaler)
+
+		$\hat{X} = \frac{X - X.min()}{X.max() - X.min()}$
+
+	\item To mean=0,std=1 (sklearn.preprocessing.StandardScaler)
+		
+		$\hat{X} = \frac{X - X.mean()}{X.std()}$
+		
+	\end{enumerate}
+With these scaling, impact of all features on non-tree-based models will become roughly similar. Feature impact can then be tuned to try and improve performance for models like kNN.
+\end{itemize}
+
+\textbf{Outliers:}
+\begin{itemize}
+\item Outliers in terms feature value can affect decision boundary/function, especially for linear models.
+\item At the same time, abnormal target value for few samples can also skew the model.
+\item Preprocessing tools:
+	\begin{enumerate}
+	\item \textbf{Clipping} values to an upper and lower bound set as some percentile of the given data. This is a well known method for financial applications (\textit{Winsorization}). e.g. setting lower bound to value at 5th percentile and upper bound to value at 95th percentile (90\% winsorization)
+	\item \textbf{Rank transformation} (scipy.stats.rankdata) sets the distances between proper sorted values to be equal. It is better than minmaxscaler at handling outliers as spacing between all values is set equal. E.g.
+		
+		$rank([-100,0,1e5]) \rightarrow [0,1,2]$
+
+		$rank([1000,1,10]) \rightarrow [2,0,1]$
+		
+		If there is no time for manual outlier handling, linear models, kNN and neural networks may benefit from this transformation. To apply rank transformation to test data, transformation must be stored. Alternatively, apply rank transformation to concatenated train and test data.
+	\item \textbf{Log transform} ($np.log(1+x)$) and raising to \textbf{power < 1} (e.g. $np.sqrt(x + 2/3)$) can help non tree-based models especially neural networks. They drive outlier values closer to the average and improve resolution near 0.
+	\end{enumerate}
+\end{itemize}
+
+\textbf{Feature generation case studies:}
+Intuitive features help not only linear models and neural networks but also GBDT which has trouble approximating multiplication and division.
+\begin{enumerate}
+\item Price and area $\rightarrow$ price per sq. area
+\item horizontal and vertical distance $\rightarrow$ direct distance
+\item Some features help to make distinctions between robots and humans explicit. E.g. in applications like auction price estimation where humans generally tend to set rounded bids and not numbers like, say, 1457. As another example, humans do not reply at exact time intervals which may be a useful feature in spambot detection.
+\end{enumerate}
+
+\subsection{Categorical and Ordinal Features}
+\textbf{Label encoding} For tree-based methods, most of the information in categorical variables can be extracted by mapping them to numbers. Does not work for non tree-based models. There are following type of encoding:
+\begin{enumerate}
+\item alphabetical (sklearn.preprocessing.LabelEncoder)
+\item order-of-appearance (pandas.factorize)
+\item frequency-based i.e. use their frequency in data as encoding. Even non-tree-based values can use this feature if frequency and target value are correlated.
+\end{enumerate}
+
+\textbf{One-hot encoding} For non-tree-based this is the suggested method to encode categorical data (pandas.get\_dummies, sklearn.preprocessing.OneHotEncoder). This method introduces one new column per category. This is not recommended for tree-based models because it introduces too many new features and can obstruct trees from using the numerical features if outnumbered. Since only one entry will be 1 per row(sample), to efficiently store the data, we need sparse matrices. Going with sparse matrices makes sense if number of non-zero values is far less than half the total number of values.
+
+\textbf{Ordinal features} can be encoded by 'cumulative' encoder\footnote{Suggested by Kelwin Fernandes in the course forum}. E.g.
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+poor & 1 & 0 & 0 & 0 \\ 
+\hline 
+fair & 1 & 1 & 0 & 0 \\ 
+\hline 
+good & 1 & 1 & 1 & 0 \\ 
+\hline 
+excellent & 1 & 1 & 1 & 1 \\ 
+\hline 
+\end{tabular}
+
+The first column can then be dropped as it is always 1. Quote: "\textit{This encoding is very useful, especially when you think about how regularization affects the coefficients associated with each category in linear models. So, the bias term will provide the prior "score" for the observation. Then, each coefficient provides the gap between classes, being the regularization associated with a small difference between contiguous classes instead of small coefficients in the original space.}"
+
+\textbf{Feature generation} One of the basic ways to generate new categorical features is to create a new feature representing the interactions of other categorical features. For example, if gender [male,female] and class[1,2,3] are available, generate new feature as [1male,2male,3male,1female,2female,3female]. This explicit feature improves learning.
+
+\subsection{Date and time Features}
+\textbf{Periodicity} Useful to capture repetitive patterns in the data. E.g. number of weeks, days, hours, minutes within the time the data were collected or until the next event
+
+\textbf{Time since} Two types:
+\begin{enumerate}
+\item row-independent: Time from a general moment/date, like the year 2000. All samples become comparable on same time scale
+\item row-dependent: E.g. time since last campaign/holiday or time to the next special event
+\end{enumerate}	
+
+\textbf{Date difference} Subtract 2 event datetimes to generate feature. E.g. difference between last\_purchase\_date and last\_call\_date for customer churn prediction task
+
+\subsection{Co-ordinate Features}
+If extra infrastructural data is available, distance to nearest shop, library, hospital, etc. can be added as a feature.
+
+If such data is not available, train and test data can be used to define interest points. For example, by dividing the map into grids and locating the costliest house in each grid, distance to this house can be added as a feature. Alternatively, cluster the available data and use cluster centres as the interst points. A complete cluster may also be defined as important and then distance to the cluster can be added.
+
+Another approach is to calculate aggregate statistics for the neighbouring area as a feature.
+
+\textit{Note:} Decision trees may benefit from the use of rotated co-ordinates for defining grids.
+
+\subsection{Quick Links}
+\begin{itemize}
+\item \href{http://scikit-learn.org/stable/modules/preprocessing.html}{Preprocessing in Sklearn}
+\item \href{https://machinelearningmastery.com/discover-feature-engineering-how-to-engineer-features-and-how-to-get-good-at-it/}{Discover Feature Engineering, How to Engineer Features and How to Get Good at It}
+\end{itemize}
+
+\section{Handling missing values}
+It is very important to note that missing values may be hidden from us i.e. replaced by something other than NaN.
+
+\textbf{Imputation methods}
+\begin{enumerate}
+\item Replace with a value outside feature range: Useful because it gives trees to put such samples into a separate category. However, performace of neural network or linear model can suffer (basically introduces outlier for them)
+\item Replace with mean / median: Reversed effect on models. Better for non-tree-based and harder for tree-based models
+\item Try to reconstruct value
+\end{enumerate}
+
+A new feature can be immediately added to demarcate rows where a particular feature value was missing. Note that imputed values must be carefully considered for subsequent feature generation as it can have unintended consequences.
+
+Some libraries like XGBoost can handle missing values out-of-the-box. Such approaches can significantly improve performance. 
+
+Sometimes it may be beneficial to treat outlier as missing value.
+
+\section{Feature Extraction from Text}
+\begin{enumerate}
+\item Bag-of-words (sklearn.feature\_extraction.text.CountVectorizer)
+
+	Simply count the number of occurences of each word. Post processing may be needed/used to make samples comparable and boost important features. Some practical counting methods are:
+	\begin{itemize}
+	\item \textbf{Term Frequency:} Word count by total count of the sentence.
+	
+		$tf = \frac{1}{x.sum(axis=1)}$
+		
+		$x = x*tf$
+	\item \textbf{Inverse Document Frequency:} We scale a word to incorporate the number of documents it appears in.
+	
+		$idf = np.log(\frac{x.shape[0]}{(x>0).sum(axis=0)}$
+		
+		$x = x*idf$
+	\item A combination of TF and iDF (sklearn.feature\_extraction.text.TfidfVectorizer)
+	\item \textbf{Ngrams:} Count occurences of all sequences of N words to make use of context (sklearn.feature\_extraction.text.CountVectorizer with proper arguments)	
+	\end{itemize}
+	Careful preprocessing helps BoW drastically.
+	\begin{itemize}
+	\item lowercase
+	\item stemming: chops of ending of words heuristically and thus unites related words 
+	\item lemmatization: carefully uses vocabulary and knowledge of morphology to unite related words
+	\item stopwords: remove articles, prepositions and extremely common words
+	\end{itemize}
+\item Embeddings
+
+	Sparse representations of words (such as word2vec, Glove, FastText, etc) and even documents (doc2vec) have been shown to encode text meaningfully. They demonstrate high-level relations such as gender efficiently. All preprocessing steps used for BoW also apply to the training of embeddings.
+\end{enumerate}
+
+\begin{tabular}{|c|c|}
+\hline 
+BoW & w2v \\ 
+\hline 
+large vectors & relatively smaller representations \\ 
+\hline 
+each position interpretable & not interpretable directly but some relations can be shown \\ 
+\hline 
+• & words with similar meaning have similar embedding \\ 
+\hline 
+\end{tabular}
+
+\subsection{Quick Links}
+\begin{itemize}
+\item \href{http://scikit-learn.org/stable/modules/feature_extraction.html}{Feature extraction from text with Sklearn}
+\item \href{http://nadbordrozd.github.io/blog/2016/05/20/text-classification-with-word2vec/}{Text Classification With Word2Vec}
+\item \href{http://www.nltk.org/}{NLTK}
+\item \href{https://github.com/sloria/TextBlob}{TextBlob}
+\end{itemize}
+
+\section{Feature Extraction from Images}
+CNN outputs of different layers can be used as good image representations. Deeper layers generally provide specialized descriptors for a particular task while earlier layers give task independent low-level features. If data is sufficiently available, the CNN may be trained from scratch for the given task. In case data is insufficient, fine-tuning of a pre-trained model is preferred.
+
+%\bibliographystyle{plain}
+%\bibliography{ref}
+\end{document}
